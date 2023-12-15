@@ -1,6 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { styles } from '../styles/style';
-import { useCreateMessageMutation } from '@/redux/features/auth/contactUsApi';
+import { useCreateMessageMutation } from '@/redux/features/contactUs/contactUsApi';
+import { FcHome } from 'react-icons/fc';
+import { FcIphone } from 'react-icons/fc';
+import { FcInvite } from 'react-icons/fc';
+import { FcIpad } from 'react-icons/fc';
 
 const ContactUs = () => {
   const initialState = {
@@ -50,7 +54,7 @@ const ContactUs = () => {
 
       <br />
       <div className='flex flex-col justify-start items-center gap-20 md:flex md:flex-row md:justify-start md:items-start md:mx-20'>
-        <div className='w-[95%] md:w-[50%]  shadow-xl rounded-xl border-t-4 border-t-[rgba(100,116,139,0.1)] dark:border-none mb-20'>
+        <div className='w-[95%] md:w-[50%]  shadow-xl rounded-xl border-t-4 border-t-[rgba(100,116,139,0.1)] dark:border-none mb-0 md:mb-20'>
           <section className='bg-white dark:bg-gray-900 rounded-xl'>
             <div className='py-8 lg:py-16 px-4 mx-auto max-w-screen-md'>
               <h2 className='mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white'>
@@ -151,7 +155,7 @@ const ContactUs = () => {
                 </div>
                 <button
                   type='submit'
-                  className='bg-gradient-to-r from-blue-500 to-[#521088] text-white py-3 px-5 text-sm font-medium text-center   dark:text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+                  className='bg-gradient-to-r from-blue-500 to-[#521088] text-white py-3 px-5 text-sm font-medium text-center   dark:text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full'
                 >
                   Send message
                 </button>
@@ -159,14 +163,32 @@ const ContactUs = () => {
             </div>
           </section>
         </div>
-        <div className='w-[95%] md:w-[50%]'>
-          <div className='flex flex-col md:flex'>
+        <div className='w-[95%] md:w-[50%] flex flex-col justify-start items-center gap-20 mb-20 md:mb-0'>
+          <div className='flex justify-start gap-5'>
+            <FcHome size={'2.5rem'} />
             <div>
-              <h3>Headquater</h3>
-              <svg></svg>
+              <h2 className='text-[30px] font-[900] font-Poppins'>
+                Headquater
+              </h2>
+              <p className=''>Jaitpur Ext 2</p>
+              <p>New Delhi 110044 India</p>
             </div>
-            <div></div>
-            <div></div>
+          </div>
+          <div className='flex justify-start gap-5'>
+            <FcIpad size={'2.5rem'} />
+            <div>
+              <h2 className='text-[30px] font-[900] font-Poppins'>Phone</h2>
+              <p className=''>+(91) 8877873229</p>
+              <p>+(91) 8877873229</p>
+            </div>
+          </div>
+          <div className='flex justify-start gap-5'>
+            <FcInvite size={'2.5rem'} />
+            <div>
+              <h2 className='text-[30px] font-[900] font-Poppins'>Support</h2>
+              <p className=''>support@uniqueiit.com</p>
+              <p>info@uniqueiit.com</p>
+            </div>
           </div>
         </div>
       </div>

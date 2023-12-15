@@ -1,5 +1,9 @@
 import { apiSlice } from '../api/apiSlice';
-import { userLoggedIn, userLoggedOut, userRegistration } from './authSlice';
+import {
+  userLoggedIn,
+  userLoggedOut,
+  userRegistration,
+} from '../auth/authSlice';
 
 type RegistrationResponse = {
   message: string;

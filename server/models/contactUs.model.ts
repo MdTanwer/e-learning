@@ -43,7 +43,7 @@ const contactUsSchema: Schema<IContactUs> = new mongoose.Schema(
         },
         message: 'please enter a valid email',
       },
-      unique: true,
+      // unique: true,
     },
     phoneNo: {
       type: Number,

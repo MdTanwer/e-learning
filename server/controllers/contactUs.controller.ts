@@ -24,8 +24,28 @@ export const createMessage = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const contactUsData = req.body;
-
+      console.log(contactUsData);
       const contactUs = await contactUsModel.create(contactUsData);
+
+      const data = { ...contactUsData };
+      const html = await ejs.renderFile(
+        path.join(__dirname, '../mails/contact-us.ejs'),
+        data
+      );
+
+      await sendMail({
+        email: contactUsData.email,
+        subject: 'Received your message - E-Learning',
+        template: 'contact-us.ejs',
+        data,
+      });
+
+      await sendMail({
+        email: 'uniqueiitpvt@gmail.com',
+        subject: contactUsData.subject,
+        template: 'contact-us-admin.ejs',
+        data,
+      });
 
       res.status(201).json({
         success: true,
