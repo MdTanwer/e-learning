@@ -53,7 +53,7 @@ const ContactUs = () => {
       </h2>
 
       <br />
-      <div className='flex flex-col justify-start items-center gap-20 md:flex md:flex-row md:justify-start md:items-start md:mx-20'>
+      <div className='flex flex-col justify-start items-center gap-20 md:flex md:flex-row md:justify-center md:items-start md:mx-20 md:gap-40'>
         <div className='w-[95%] md:w-[50%]  shadow-xl rounded-xl border-t-4 border-t-[rgba(100,116,139,0.1)] dark:border-none mb-0 md:mb-20'>
           <section className='bg-white dark:bg-gray-900 rounded-xl'>
             <div className='py-8 lg:py-16 px-4 mx-auto max-w-screen-md'>
@@ -163,7 +163,7 @@ const ContactUs = () => {
             </div>
           </section>
         </div>
-        <div className='w-[95%] md:w-[50%] flex flex-col justify-start items-center gap-20 mb-20 md:mb-0'>
+        <div className='w-[95%] md:w-[50%] flex flex-col justify-start items-center gap-20 mb-20 md:mb-0 md:items-start'>
           <div className='flex justify-start gap-5'>
             <FcHome size={'2.5rem'} />
             <div>
