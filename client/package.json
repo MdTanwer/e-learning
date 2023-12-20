@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@stripe/react-stripe-js": "^2.1.2",
     "@stripe/stripe-js": "^2.1.0",
+    "@tinymce/tinymce-react": "^4.3.2",
     "@types/node": "20.4.9",
     "@types/react": "18.2.19",
     "@types/react-dom": "18.2.7",
@@ -26,6 +27,7 @@
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "formik": "^2.4.3",
+    "fs-extra": "^11.2.0",
     "next": "13.4.13",
     "next-auth": "^4.23.0",
     "next-themes": "^0.2.1",
@@ -40,9 +42,14 @@
     "socket.io-client": "^4.7.2",
     "tailwindcss": "3.3.3",
     "timeago.js": "^4.0.2",
+    "tinymce": "^6.8.2",
     "typescript": "5.1.6",
     "utf-8-validate": "^6.0.3",
     "ws": "^8.13.0",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/tinymce": "^4.6.9",
+    "flowbite-typography": "^1.0.3"
   }
 }
