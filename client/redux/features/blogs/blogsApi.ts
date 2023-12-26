@@ -12,12 +12,12 @@ type RegistrationResponse = {
 
 type RegistrationData = {};
 
-export const contactUsApi = apiSlice.injectEndpoints({
+export const blogsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // endpoints here
-    createMessage: builder.mutation({
+    createBlog: builder.mutation({
       query: (data) => ({
-        url: 'create-message',
+        url: 'create-blog',
         method: 'POST',
         body: data,
         credentials: 'include' as const,
@@ -34,6 +34,13 @@ export const contactUsApi = apiSlice.injectEndpoints({
       //     console.log(error);
       //   }
       // },
+    }),
+    getAllBlogs: builder.query({
+      query: () => ({
+        url: 'all-blogs',
+        method: 'GET',
+        credentials: 'include' as const,
+      }),
     }),
     // activation: builder.mutation({
     //   query: ({ activation_token, activation_code }) => ({
@@ -112,10 +119,10 @@ export const contactUsApi = apiSlice.injectEndpoints({
 });
 
 export const {
-  useCreateMessageMutation,
+  useCreateBlogMutation,
+  useGetAllBlogsQuery,
   // useRegisterMutation,
   // useActivationMutation,
   // useLoginMutation,
   // useSocialAuthMutation,
-  // useLogOutQuery,
-} = contactUsApi;
+} = blogsApi;

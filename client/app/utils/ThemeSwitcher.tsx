@@ -1,12 +1,17 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { BiMoon, BiSun } from "react-icons/bi";
+'use client';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { BiMoon, BiSun } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { currentTheme } from '@/redux/features/theme/themeSlice';
 
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
+  const dispatch = useDispatch();
+  if (theme) {
+    dispatch(currentTheme({ theme }));
+  }
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
@@ -14,19 +19,19 @@ export const ThemeSwitcher = () => {
   }
 
   return (
-    <div className="flex items-center justify-center mx-4">
-      {theme === "light" ? (
+    <div className='flex items-center justify-center mx-4'>
+      {theme === 'light' ? (
         <BiMoon
-          className="cursor-pointer"
-          fill="black"
+          className='cursor-pointer'
+          fill='black'
           size={25}
-          onClick={() => setTheme("dark")}
+          onClick={() => setTheme('dark')}
         />
       ) : (
         <BiSun
           size={25}
-          className="cursor-pointer"
-          onClick={() => setTheme("light")}
+          className='cursor-pointer'
+          onClick={() => setTheme('light')}
         />
       )}
     </div>

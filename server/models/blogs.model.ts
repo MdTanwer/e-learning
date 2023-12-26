@@ -6,9 +6,10 @@ import jwt from 'jsonwebtoken';
 // const emailRegexPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export interface IBlog extends Document {
-  writerName: string;
+  authorName: string;
   designation: string;
   blogTitle: string;
+  category: string;
   shortDescription: string;
   avatar: {
     public_id: string;
@@ -29,7 +30,7 @@ export interface IBlog extends Document {
 
 const blogSchema: Schema<IBlog> = new mongoose.Schema(
   {
-    writerName: {
+    authorName: {
       type: String,
       required: [true, "Please enter writer's name"],
     },
@@ -41,18 +42,22 @@ const blogSchema: Schema<IBlog> = new mongoose.Schema(
       type: String,
       required: [true, 'Please enter blog title'],
     },
+    category: {
+      type: String,
+      required: [true, 'Please enter blog category'],
+    },
     shortDescription: {
       type: String,
       required: [true, 'Please enter short description'],
     },
-    avatar: {
-      public_id: String,
-      url: String,
-    },
     thumbnail: {
-      public_id: String,
-      url: String,
+      type: String,
+      required: [true, 'Please upload thumbnail'],
     },
+    // thumbnail: {
+    //   public_id: String,
+    //   url: String,
+    // },
     fullBlogContent: {
       type: String,
       required: [true, 'Please enter short description'],

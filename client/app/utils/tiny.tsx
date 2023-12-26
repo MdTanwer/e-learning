@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import tinymce from 'tinymce/tinymce';
 type TinyEditorProps = {
   editorContent: string;
   setEditorContent: (details: string) => void;
 };
 
 const TinyEditor = ({ editorContent, setEditorContent }: TinyEditorProps) => {
+  const theme = useSelector((store: any) => store.theme.theme);
   const editorRef: any = useRef(null);
 
   const editorChangeHandler = (newValue: string, editor: any) => {
@@ -15,6 +16,10 @@ const TinyEditor = ({ editorContent, setEditorContent }: TinyEditorProps) => {
     // let fullDescriptionStr = editorRef.current.getContent();
     setEditorContent(fullDescriptionStr);
   };
+
+  useEffect(() => {
+    editorRef;
+  }, [theme]);
 
   return (
     <>
@@ -24,7 +29,8 @@ const TinyEditor = ({ editorContent, setEditorContent }: TinyEditorProps) => {
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue='<p>This is the initial content of the editor.</p>'
         init={{
-          height: 1000,
+          height: 313,
+          width: '100%',
           menubar: false,
           plugins: [
             'advlist autolink lists link image charmap print preview anchor',
@@ -37,7 +43,17 @@ const TinyEditor = ({ editorContent, setEditorContent }: TinyEditorProps) => {
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help',
           content_style:
-            'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+            'body { font-family:Helvetica,Arial, sans-serif; font-size:14px}',
+          skin: `${theme === 'dark' ? 'oxide-dark' : 'oxide'}`,
+          content_css: `${theme === 'dark' ? 'dark' : 'oxide'}`,
+          // skin: 'oxide-dark',
+          // content_css: 'dark',
+          // skin: window.matchMedia('(prefers-color-scheme: dark)').matches
+          //   ? 'oxide-dark'
+          //   : 'oxide',
+          // content_css: window.matchMedia('(prefers-color-scheme: dark)').matches
+          //   ? 'dark'
+          //   : 'default',
         }}
         value={editorContent}
         onEditorChange={editorChangeHandler}

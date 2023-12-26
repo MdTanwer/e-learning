@@ -7,22 +7,19 @@ const BlogCard = ({ blog }: { blog: any }) => {
       <a href='#'>
         <Image
           className='rounded-t-lg'
-          src={blog?.thumbnail}
-          // fill={true}
-          width={700}
-          height={700}
-          // src={require('../../../public/assests/image-1.jpg')}
+          src={require('../../../public/assests/image-1.jpg')}
           alt='blogs image'
         />
       </a>
       <div className='p-5'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-            {blog?.blogTitle}
+            Noteworthy technology acquisitions 2021
           </h5>
         </a>
         <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
-          {blog?.shortDescription}
+          Here are the biggest enterprise technology acquisitions of 2021 so
+          far, in reverse chronological order.
         </p>
         <a
           href='#'

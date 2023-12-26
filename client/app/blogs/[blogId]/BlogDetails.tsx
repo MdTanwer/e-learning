@@ -11,12 +11,10 @@ const BlogDetails = () => {
               <address className='flex items-center mb-6 not-italic'>
                 <div className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white'>
                   <Image
-                    className='mr-4 w-16 h-16 rounded-full'
+                    className='mr-4 w-16 h-16 rounded-full object-cover'
                     width={50}
                     height={50}
-                    src={
-                      'https://flowbite.com/docs/images/people/profile-picture-2.jpg'
-                    }
+                    src={require('../../../public/assests/logo.png')}
                     alt='Jese Leos'
                   />
                   <div>
