@@ -8,12 +8,27 @@ import { FcIpad } from 'react-icons/fc';
 import BlogCard from '../components/BlogsCard/BlogsCard';
 import { useGetAllBlogsQuery } from '@/redux/features/blogs/blogsApi';
 
+export type BlogType = {
+  _id: string;
+  authorName: string;
+  designation: string;
+  blogTitle: string;
+  category: string;
+  shortDescription: string;
+  thumbnail: string;
+  thumbnailCaption: string;
+  fullBlogContent: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
 const Blogs = () => {
   const { isLoading, data, refetch } = useGetAllBlogsQuery(
     {},
     { refetchOnMountOrArgChange: true }
   );
-  console.log(data?.blogs);
+  // console.log(data?.blogs);
   // const initialState = {
   //   name: '',
   //   email: '',
@@ -62,7 +77,7 @@ const Blogs = () => {
 
       <br />
       <div className='grid grid-cols-1 justify-start items-center gap-10 mx-5 mb-10 md:grid md:grid-cols-4 md:justify-start md:items-start md:mx-20 md:gap-10'>
-        {data?.blogs?.map((blog: any, i: number) => (
+        {data?.blogs?.map((blog: BlogType, i: number) => (
           <BlogCard key={i} blog={blog} />
         ))}
         {/* <BlogCard />

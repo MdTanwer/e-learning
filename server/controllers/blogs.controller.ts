@@ -51,3 +51,33 @@ export const getAllBlogs = CatchAsyncError(
     }
   }
 );
+// get blog details
+export const getBlogDetails = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // const userCourseList = req.user?.courses;
+      const courseId = req.params.id;
+
+      // const courseExists = userCourseList?.find(
+      //   (course: any) => course._id.toString() === courseId
+      // );
+
+      // if (!courseExists) {
+      //   return next(
+      //     new ErrorHandler('You are not eligible to access this course', 404)
+      //   );
+      // }
+
+      const blog = await blogsModel.findById(courseId);
+
+      // const content = course?.courseData;
+
+      res.status(200).json({
+        success: true,
+        blog,
+      });
+    } catch (error: any) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);

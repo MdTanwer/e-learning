@@ -14,7 +14,11 @@ import express from 'express';
 //   updateUserRole,
 // } from '../controllers/user.controller';
 // import { authorizeRoles, isAutheticated } from '../middleware/auth';
-import { createBlog, getAllBlogs } from '../controllers/blogs.controller';
+import {
+  createBlog,
+  getAllBlogs,
+  getBlogDetails,
+} from '../controllers/blogs.controller';
 
 const blogsRouter = express.Router();
 
@@ -22,7 +26,7 @@ blogsRouter.post('/create-blog', createBlog);
 
 blogsRouter.get('/all-blogs', getAllBlogs);
 
-blogsRouter.get('/message');
+blogsRouter.get('/blog-details/:id', getBlogDetails);
 
 blogsRouter.put('/update-message');
 

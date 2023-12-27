@@ -6,11 +6,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 import BlogDetails from './BlogDetails';
 
-type params = {
+export type paramsType = {
   params: { blogId: String };
 };
 
-const Page = ({ params }: params) => {
+const Page = ({ params }: paramsType) => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(6);
   const [route, setRoute] = useState('Login');
@@ -24,7 +24,7 @@ const Page = ({ params }: params) => {
         setRoute={setRoute}
         route={route}
       />
-      <BlogDetails />
+      <BlogDetails params={params} />
       <Footer />
     </>
   );

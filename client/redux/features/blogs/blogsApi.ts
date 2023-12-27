@@ -42,6 +42,13 @@ export const blogsApi = apiSlice.injectEndpoints({
         credentials: 'include' as const,
       }),
     }),
+    getBlog: builder.query({
+      query: (blogId: string) => ({
+        url: `blog-details/${blogId}`,
+        method: 'GET',
+        credentials: 'include' as const,
+      }),
+    }),
     // activation: builder.mutation({
     //   query: ({ activation_token, activation_code }) => ({
     //     url: 'activate-user',
@@ -121,6 +128,8 @@ export const blogsApi = apiSlice.injectEndpoints({
 export const {
   useCreateBlogMutation,
   useGetAllBlogsQuery,
+  useGetBlogQuery,
+  // useGetBlogQuery,
   // useRegisterMutation,
   // useActivationMutation,
   // useLoginMutation,

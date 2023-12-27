@@ -19,6 +19,7 @@ export interface IBlog extends Document {
     public_id: string;
     url: string;
   };
+  thumbnailCaption: string;
   fullBlogContent: string;
   // role: string;
   // isVerified: boolean;
@@ -53,6 +54,10 @@ const blogSchema: Schema<IBlog> = new mongoose.Schema(
     thumbnail: {
       type: String,
       required: [true, 'Please upload thumbnail'],
+    },
+    thumbnailCaption: {
+      type: String,
+      required: [true, 'Please enter thumbnail caption'],
     },
     // thumbnail: {
     //   public_id: String,
