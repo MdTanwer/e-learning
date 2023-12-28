@@ -58,12 +58,10 @@ const Sidebar = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const width = window.innerWidth;
   // window.innerWidth ||
   // document.documentElement.clientWidth ||
   // document.body.clientWidth;
   useEffect(() => setMounted(true), []);
-  console.log(width);
   if (!mounted) {
     return null;
   }
