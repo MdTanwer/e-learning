@@ -23,8 +23,9 @@ app.use(cookieParser());
 // cors => cross origin resource sharing
 app.use(
   cors({
-    origin: ['http://localhost:3000, https://uniqueiit-lms.vercel.app/'],
+    origin: ['http://localhost:3000, https://uniqueiit-lms.vercel.app'],
     // origin: ["https://e-learning-client-nine.vercel.app"],
+    methods: ['POST', 'GET', 'PUT', 'PATCH', 'DELETE', 'HEAD'],
     credentials: true,
   })
 );
