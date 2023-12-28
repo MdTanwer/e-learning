@@ -14,14 +14,14 @@ import { useSelector } from 'react-redux';
 
 const BlogsAdmin = () => {
   const [createBlog, { data, error, isSuccess }] = useCreateBlogMutation();
-
+  console.log('DATA', data);
+  console.log('isSUCCESS', isSuccess);
   const initialState = {
     authorName: '',
     designation: '',
     blogTitle: '',
     category: '',
     shortDescription: '',
-    avatar: '',
     thumbnail: '',
     thumbnailCaption: '',
     fullBlogContent: '',
@@ -253,7 +253,7 @@ const BlogsAdmin = () => {
                     <div className='flex items-center justify-center w-full sm:col-span-2'>
                       <label
                         htmlFor='thumbnail'
-                        className='flex flex-col items-center justify-center w-full h-24 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'
+                        className='flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 md:h-28'
                       >
                         <div className='flex flex-col items-center justify-center pt-5 pb-6'>
                           <svg
@@ -279,13 +279,10 @@ const BlogsAdmin = () => {
                               Click to upload
                             </span>{' '}
                             or drag and drop{' '}
-                            <span className='text-xs text-gray-500 dark:text-gray-400'>
-                              (SVG, PNG, JPG or GIF)
-                            </span>
                           </p>
-                          {/* <p className='text-xs text-gray-500 dark:text-gray-400'>
+                          <p className='text-xs text-gray-500 dark:text-gray-400'>
                             SVG, PNG, JPG or GIF
-                          </p> */}
+                          </p>
                         </div>
                       </label>
                       <input

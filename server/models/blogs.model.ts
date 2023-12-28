@@ -11,14 +11,11 @@ export interface IBlog extends Document {
   blogTitle: string;
   category: string;
   shortDescription: string;
-  avatar: {
-    public_id: string;
-    url: string;
-  };
-  thumbnail: {
-    public_id: string;
-    url: string;
-  };
+  thumbnail: string;
+  // thumbnail: {
+  //   public_id: string;
+  //   url: string;
+  // };
   thumbnailCaption: string;
   fullBlogContent: string;
   // role: string;
@@ -65,7 +62,7 @@ const blogSchema: Schema<IBlog> = new mongoose.Schema(
     // },
     fullBlogContent: {
       type: String,
-      required: [true, 'Please enter short description'],
+      required: [true, 'Please enter full description'],
     },
 
     // email: {
@@ -101,36 +98,6 @@ const blogSchema: Schema<IBlog> = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-// // Hash Password before saving
-// userSchema.pre<IUser>("save", async function (next) {
-//   if (!this.isModified("password")) {
-//     next();
-//   }
-//   this.password = await bcrypt.hash(this.password, 10);
-//   next();
-// });
-
-// // sign access token
-// userSchema.methods.SignAccessToken = function () {
-//   return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || "", {
-//     expiresIn: "5m",
-//   });
-// };
-
-// // sign refresh token
-// userSchema.methods.SignRefreshToken = function () {
-//   return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || "", {
-//     expiresIn: "3d",
-//   });
-// };
-
-// // compare password
-// userSchema.methods.comparePassword = async function (
-//   enteredPassword: string
-// ): Promise<boolean> {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
 
 const blogsModel: Model<IBlog> = mongoose.model('Blog', blogSchema);
 

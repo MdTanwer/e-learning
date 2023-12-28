@@ -28,41 +28,6 @@ const Blogs = () => {
     {},
     { refetchOnMountOrArgChange: true }
   );
-  // console.log(data?.blogs);
-  // const initialState = {
-  //   name: '',
-  //   email: '',
-  //   phoneNo: '',
-  //   subject: '',
-  //   message: '',
-  // };
-
-  // const [createMessage, { data, error, isSuccess }] =
-  //   useCreateMessageMutation();
-
-  // const [contactFormData, setContactFormData] = useState({ ...initialState });
-
-  // console.log(contactFormData);
-
-  // const handleFormChange = (
-  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e?.target;
-  //   setContactFormData({ ...contactFormData, [name]: e.target.value });
-  // };
-
-  // const contactFormSubmit = async (e: FormEvent) => {
-  //   e.preventDefault();
-  //   const resp = await createMessage({
-  //     ...contactFormData,
-  //     status: '',
-  //     updateId: '',
-  //     updatedAt: '',
-  //     description: '',
-  //   });
-  //   console.log(resp);
-  //   console.log('submitted🔥🔥🔥🔥🔥');
-  // };
   return (
     <div className='text-black dark:text-white'>
       <br />

@@ -58,7 +58,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   };
   // z-[9999999]
   return (
-    <div className='flex items-center justify-end p-6 fixed top-5 right-0 z-[10px]'>
+    <div className='flex items-center justify-end pr-1 md:pr-6 fixed top-2 md:top-5 right-0 z-[20px]'>
       <ThemeSwitcher />
       <div
         className='relative cursor-pointer m-2'
