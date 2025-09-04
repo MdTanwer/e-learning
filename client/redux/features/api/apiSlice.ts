@@ -4,7 +4,7 @@ import { userLoggedIn } from "../auth/authSlice";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
+    baseUrl: "https://e-learning-yuuh.onrender.com/api/v1",
   }),
   endpoints: (builder) => ({
     refreshToken: builder.query({

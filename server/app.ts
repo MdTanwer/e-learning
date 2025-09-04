@@ -23,7 +23,10 @@ app.use(cookieParser());
 // cors => cross origin resource sharing
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "https://e-learning-nine-roan.vercel.app",
+    ],
     // origin: ["https://e-learning-client-nine.vercel.app"],
     methods: ["POST", "GET", "PUT", "PATCH", "DELETE", "HEAD"],
     credentials: true,
