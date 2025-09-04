@@ -9,9 +9,9 @@ const server = http.createServer(app);
 // edits
 // cloudinary config
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_SECRET_KEY,
+  cloud_name: process.env.CLOUD_NAME || "daa8gag2g",
+  api_key: process.env.CLOUD_API_KEY || "854896987853316",
+  api_secret: process.env.CLOUD_SECRET_KEY || "x_NWERNTAUpQ7FPIWqvugrtHU_k",
 });
 
 initSocketServer(server);

@@ -107,7 +107,11 @@ const Verification: FC<Props> = ({ setRoute }) => {
       <br />
       <br />
       <div className="w-full flex justify-center">
-        <button className={`${styles.button}`} onClick={verificationHandler}>
+        <button
+          type="button"
+          className="w-full py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold shadow-md transition-all duration-200 cursor-pointer"
+          onClick={verificationHandler}
+        >
           Verify OTP
         </button>
       </div>

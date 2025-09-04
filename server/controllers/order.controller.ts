@@ -10,8 +10,31 @@ import sendMail from "../utils/sendMail";
 import NotificationModel from "../models/notification.Model";
 import { getAllOrdersService, newOrder } from "../services/order.service";
 import { redis } from "../utils/redis";
+import Stripe from "stripe";
+const stripe = new Stripe(
+  "sk_test_51NiBmaSB4DcagRjdMETFZPwgmjAmj8lI2gqvoOoTn1iRDdMK0QyajVeAa8GAiz32WuMsZOYRCp1tlrLqefWCEx2G00cjKpAFVq",
+  { apiVersion: "2023-08-16" }
+);
 require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+// Create PaymentIntent endpoint
+export const createPaymentIntent = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { amount } = req.body; // amount in cents
+      if (!amount) {
+        return res.status(400).json({ error: "Amount is required" });
+      }
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount,
+        currency: "inr",
+      });
+      res.json({ clientSecret: paymentIntent.client_secret });
+    } catch (error: any) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);
 
 // create order
 export const createOrder = CatchAsyncError(
@@ -20,8 +43,9 @@ export const createOrder = CatchAsyncError(
       const { courseId, payment_info } = req.body as IOrder;
 
       if (payment_info) {
-        if ("id" in payment_info) {
-          const paymentIntentId = payment_info.id;
+        const paymentInfoAny = payment_info as any;
+        if (typeof paymentInfoAny.id === "string") {
+          const paymentIntentId = paymentInfoAny.id;
           const paymentIntent = await stripe.paymentIntents.retrieve(
             paymentIntentId
           );
@@ -44,7 +68,7 @@ export const createOrder = CatchAsyncError(
         );
       }
 
-      const course:ICourse | null = await CourseModel.findById(courseId);
+      const course: ICourse | null = await CourseModel.findById(courseId);
 
       if (!course) {
         return next(new ErrorHandler("Course not found", 404));
@@ -136,7 +160,7 @@ export const newPayment = CatchAsyncError(
     try {
       const myPayment = await stripe.paymentIntents.create({
         amount: req.body.amount,
-        currency: "USD",
+        currency: "inr",
         metadata: {
           company: "E-Learning",
         },

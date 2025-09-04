@@ -28,15 +28,14 @@ const CourseDetailsPage = ({ id }: Props) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    if (config) {
-      const publishablekey = config?.publishablekey;
-      setStripePromise(loadStripe(publishablekey));
-    }
+    // Hardcode the publishable key here
+    const publishablekey = "pk_test_51NiBmaSB4DcagRjdSJXGdOu7l5lpNZunDZsrQkcvKwk9D7KNnlAijEb0P1qnegGMrMgazcDbUwfDmxU4bIed4xTS00pC0lgdAT";
+    setStripePromise(loadStripe(publishablekey));
     if (data && userData?.user) {
       const amount = Math.round(data.course.price * 100);
       createPaymentIntent(amount);
     }
-  }, [config, data, userData]);
+  }, [data, userData]);
 
   useEffect(() => {
     if (paymentIntentData) {

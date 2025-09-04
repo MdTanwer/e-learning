@@ -17,6 +17,7 @@ export const uploadCourse = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = req.body;
+      console.log("data in uploadCourse", data);
       const thumbnail = data.thumbnail;
       if (thumbnail) {
         const myCloud = await cloudinary.v2.uploader.upload(thumbnail, {
@@ -30,6 +31,7 @@ export const uploadCourse = CatchAsyncError(
       }
       createCourse(data, res, next);
     } catch (error: any) {
+      console.log("error in uploadCourse", error);
       return next(new ErrorHandler(error.message, 500));
     }
   }
@@ -45,7 +47,7 @@ export const editCourse = CatchAsyncError(
 
       const courseId = req.params.id;
 
-      const courseData = await CourseModel.findById(courseId) as any;
+      const courseData = (await CourseModel.findById(courseId)) as any;
 
       if (thumbnail && !thumbnail.startsWith("https")) {
         await cloudinary.v2.uploader.destroy(courseData.thumbnail.public_id);
@@ -367,7 +369,6 @@ export const addReview = CatchAsyncError(
         message: `${req.user?.name} has given a review in ${course?.name}`,
       });
 
-
       res.status(200).json({
         success: true,
         course,
@@ -415,7 +416,7 @@ export const addReplyToReview = CatchAsyncError(
       }
 
       review.commentReplies?.push(replyData);
-      
+
       await course?.save();
 
       await redis.set(courseId, JSON.stringify(course), "EX", 604800); // 7days
@@ -479,7 +480,10 @@ export const generateVideoUrl = CatchAsyncError(
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
+            Authorization: `Apisecret ${
+              process.env.VDOCIPHER_API_SECRET ||
+              "sRdME9wbVvrJc3yj0XKxfYmJRTjTERBhSMtX9UCWmBgV3NYgLFK9s4TyqFV0d6mS"
+            }`,
           },
         }
       );
