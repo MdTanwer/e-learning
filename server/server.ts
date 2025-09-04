@@ -1,9 +1,9 @@
-import { v2 as cloudinary } from 'cloudinary';
-import http from 'http';
-import connectDB from './utils/db';
-import { initSocketServer } from './socketServer';
-import { app } from './app';
-require('dotenv').config();
+import { v2 as cloudinary } from "cloudinary";
+import http from "http";
+import connectDB from "./utils/db";
+import { initSocketServer } from "./socketServer";
+import { app } from "./app";
+require("dotenv").config();
 const server = http.createServer(app);
 
 // edits
@@ -16,8 +16,10 @@ cloudinary.config({
 
 initSocketServer(server);
 
+const PORT = process.env.PORT || 5000;
+
 // create server
-server.listen(process.env.PORT, () => {
-  console.log(`Server is connected with port ${process.env.PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server is connected with port ${PORT}`);
   connectDB();
 });
