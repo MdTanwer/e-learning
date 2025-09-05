@@ -17,7 +17,7 @@ const CoursePreview: FC<Props> = ({
   handleCourseCreate,
   setActive,
   active,
-  isEdit
+  isEdit,
 }) => {
   const dicountPercentenge =
     ((courseData?.estimatedPrice - courseData?.price) /
@@ -45,10 +45,10 @@ const CoursePreview: FC<Props> = ({
         </div>
         <div className="flex items-center">
           <h1 className="pt-5 text-[25px]">
-            {courseData?.price === 0 ? "Free" : courseData?.price + "$"}
+            {courseData?.price === 0 ? "Free" : `₹${courseData?.price}`}
           </h1>
           <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80">
-            {courseData?.estimatedPrice}$
+            {`₹${courseData?.estimatedPrice}`}
           </h5>
 
           <h4 className="pl-5 pt-4 text-[22px]">
@@ -60,7 +60,7 @@ const CoursePreview: FC<Props> = ({
           <div
             className={`${styles.button} !w-[180px] my-3 font-Poppins !bg-[crimson] cursor-not-allowed`}
           >
-            Buy Now {courseData?.price}$
+            Buy Now ₹{courseData?.price}
           </div>
         </div>
 
@@ -146,9 +146,7 @@ const CoursePreview: FC<Props> = ({
           className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
           onClick={() => createCourse()}
         >
-         {
-          isEdit ? 'Update' : 'Create'
-         }
+          {isEdit ? "Update" : "Create"}
         </div>
       </div>
     </div>

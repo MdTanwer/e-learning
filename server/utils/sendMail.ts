@@ -24,9 +24,16 @@ const sendMail = async (options: EmailOptions): Promise<void> => {
 
   // get the pdath to the email template file
   const templatePath = path.join(__dirname, "../mails", template);
+  console.log("Looking for email template at:", templatePath);
 
-  // Render the email template with EJS
-  const html: string = await ejs.renderFile(templatePath, data);
+  let html: string;
+  try {
+    html = await ejs.renderFile(templatePath, data);
+    console.log("EJS template rendered successfully.");
+  } catch (err) {
+    console.error("EJS render error:", err);
+    throw err;
+  }
 
   const mailOptions = {
     from: process.env.SMTP_MAIL,

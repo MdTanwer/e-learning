@@ -1,24 +1,24 @@
-require('dotenv').config();
-import { Request, Response, NextFunction } from 'express';
-import contactUsModel, { IContactUs } from '../models/contactUs.model';
-import ErrorHandler from '../utils/ErrorHandler';
-import { CatchAsyncError } from '../middleware/catchAsyncErrors';
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
-import ejs from 'ejs';
-import path from 'path';
-import sendMail from '../utils/sendMail';
+require("dotenv").config();
+import { Request, Response, NextFunction } from "express";
+import contactUsModel, { IContactUs } from "../models/contactUs.model";
+import ErrorHandler from "../utils/ErrorHandler";
+import { CatchAsyncError } from "../middleware/catchAsyncErrors";
+import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import ejs from "ejs";
+import path from "path";
+import sendMail from "../utils/sendMail";
 import {
   accessTokenOptions,
   refreshTokenOptions,
   sendToken,
-} from '../utils/jwt';
-import { redis } from '../utils/redis';
+} from "../utils/jwt";
+import { redis } from "../utils/redis";
 import {
   getAllUsersService,
   getUserById,
   updateUserRoleService,
-} from '../services/user.service';
-import cloudinary from 'cloudinary';
+} from "../services/user.service";
+import cloudinary from "cloudinary";
 
 export const createMessage = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -29,21 +29,21 @@ export const createMessage = CatchAsyncError(
 
       const data = { ...contactUsData };
       const html = await ejs.renderFile(
-        path.join(__dirname, '../mails/contact-us.ejs'),
+        path.join(__dirname, "../mails/contact-us.ejs"),
         data
       );
 
       await sendMail({
         email: contactUsData.email,
-        subject: 'Received your message - E-Learning',
-        template: 'contact-us.ejs',
+        subject: "Received your message - E-Learning",
+        template: "contact-us.ejs",
         data,
       });
 
       await sendMail({
-        email: 'uniqueiitpvt@gmail.com',
+        email: "uniqueiitpvt@gmail.com",
         subject: contactUsData.subject,
-        template: 'contact-us-admin.ejs',
+        template: "contact-us-admin.ejs",
         data,
       });
 
